@@ -1,0 +1,18 @@
+version: "3.2"
+services:
+
+    topokapp:
+        build: ./
+        # image: pereirawe/topokapp
+        container_name: topokapp-app
+        privileged: true
+        ports:
+            - 9003:80
+        volumes:
+            - ../:/var/www/html
+        networks:
+            - internal
+
+networks:
+    internal:
+        driver: bridge
