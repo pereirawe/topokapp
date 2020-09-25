@@ -18,3 +18,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN echo "date.timezone=America/Sao_Paulo" > /usr/local/etc/php/conf.d/timezone_sao_paulo.ini
 
 RUN echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory_limit.ini
+
+RUN a2enmod rewrite
