@@ -9,13 +9,17 @@ class Route{
 
         $this->request = substr($_SERVER['REQUEST_URI'],1);
 
+        require_once 'Views/index.php';
 
         if ($this->request == 'login') {
             echo 'ME VOY PAL CARAJO!'; die;
         }
-        print_r($this); die;
 
-        // TODO: 
+        // if ($this->request == '') {
+        // }
+        // print_r($this); die;
+
+        // TODO:
 
         // $arUrlParams = array (
         //     'country',
@@ -61,22 +65,23 @@ class Route{
 
     public function listen(){
         switch ($this->request) {
-            case 'API/':
+            case '':
                 http_response_code(200);
+                echo 'Hola';
                 require './Views/index.php';
                 break;
 
-            
+
             case 'API/'.$this->country.'/PDF/'.$this->method.'/':
                 $category = $this->method;
                 require './Services/PDF/index.php';
                 break;
-            
+
             case 'API/'.$this->country.'/EXCEL/'.$this->method.'/':
                 echo "jol";
                 require './Services/EXCEL/index.php';
                 break;
-        
+
             case 'API/'.$this->country.'/'. $this->service.'/':
                 $service = $this->service;
                 $controller = $service.'Controller.php';
@@ -87,7 +92,7 @@ class Route{
                 http_response_code(200);
                 return $response->$method();
                 break;
-            
+
             case 'API/'.$this->country.'/'. $this->service.'/'. $this->method.'/':
                 $service = $this->service;
                 $controller = $service.'Controller.php';
